@@ -5,17 +5,43 @@
 <title>嘻嘻哈哈(By Will.)</title>
 <link href="./css/style.css" rel="stylesheet" type="text/css" media="all" />
 <script type="text/javascript" src="./js/jquery.js"></script>
+<meta name="csrf-token" content="{{ csrf_token() }}" />
 <script>
+$.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+});
 window.onload = function(){
 	PBL('wrap','box');
-	var data = [{'src':'1.jpg','title':'This is a title.'},{'src':'2.jpg','title':'This is a title.'},{'src':'3.jpg','title':'This is a title.'},{'src':'4.jpg','title':'This is a title.'},{'src':'5.jpg','title':'This is a title.'},{'src':'6.jpg','title':'This is a title.'},{'src':'7.jpg','title':'This is a title.'},{'src':'8.jpg','title':'This is a title.'},{'src':'9.jpg','title':'This is a title.'},{'src':'10.jpg','title':'This is a title.'}];
+	var ajax_data = [];
+	var j = 1;
 	window.onscroll = function() {
-		scroll();
+		if (j > 10) {
+			alert('到底了， 明天再来');
+
+			// to do footer
+
+			// var wrap = document.getElementById('wrap');
+			// var footer = document.createElement('div');
+			// footer.className = 'footer';
+			// wrap.appendChild(footer);
+			// var p = document.createElement('p');
+			// p.innerHTML = '到底了， 明天再来';
+			// footer.appendChild(p);
+		} else {
+			scroll();
+		}
 	}
+
 	function scroll(){
 		if(getCheck()){
+			$.post("ajaxData", { 'page':j }, function(data, status){
+				ajax_data = data;
+			});
 			var wrap = document.getElementById('wrap');
-			for(i in data){
+			for(i in ajax_data){
+				// alert(ajax_data[i].title);
 				//创建box
 				var box = document.createElement('div');
 				box.className = 'box';
@@ -24,25 +50,25 @@ window.onload = function(){
 				var info = document.createElement('div');
 				info.className = 'info';
 				box.appendChild(info);
-				//创建pic
-				var pic = document.createElement('div');
-				pic.className = 'pic';
-				info.appendChild(pic);
-				//创建img
-				var img = document.createElement('img');
-				img.src = 'images/'+data[i].src;
-				img.style.height = 'auto';
-				pic.appendChild(img);
 				//创建title
 				var title = document.createElement('div');
 				title.className = 'title';
 				info.appendChild(title);
 				//创建a标记
 				var a = document.createElement('a');
-				a.innerHTML = data[i].title;
+				a.innerHTML = ajax_data[i].title;
 				title.appendChild(a);
+				//创建pic
+				var pic = document.createElement('div');
+				pic.className = 'pic';
+				info.appendChild(pic);
+				//创建img
+				var p = document.createElement('p');
+				p.innerHTML = ajax_data[i].body;
+				pic.appendChild(p);
 			}
 			PBL('wrap','box');
+			j++;
 		}
 	}
 }
