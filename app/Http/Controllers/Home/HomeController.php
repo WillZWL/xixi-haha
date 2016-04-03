@@ -26,4 +26,12 @@ class HomeController extends Controller
         $articles = Article::getIndexData();
         return view('home.index', compact('articles'));
     }
+
+    public function ajaxData()
+    {
+        $n = $_POST['page'];
+        $key = 'joke'.$n;
+        $data = \Cache::tags('xixihaha')->get($key);
+        return response()->json($data);
+    }
 }

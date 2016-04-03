@@ -43,14 +43,19 @@ class CurlJoke extends Command {
     }
 
     private function cacheData() {
-        Article::latest()->limit(100)->select('title', 'body')->chunk(10, function($articles){
-            $i = 0;
-            foreach ($articles as $article) {
-                $key = 'joke'.$i;
-                \Cache::tags('xixihaha')->forever($key, $article);
-                $i++;
+        for ($i=1; $i <= 10; $i++) {
+            $skip = 20*$i;
+            $articles = Article::latest()->skip($skip)->take(20)->get();
+            $data = array();
+            $row = array();
+            foreach ($articles as $k => $article) {
+                $row['title'] = $article->title;
+                $row['body'] = $article->body;
+                $data[] = $row;
             }
-        });
+            $key = 'joke'.$i;
+            \Cache::tags('xixihaha')->forever($key, $data);
+        }
     }
 
     private function flushData()

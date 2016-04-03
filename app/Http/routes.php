@@ -25,7 +25,6 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'auth
     Route::patch('settings/index', 'SettingsController@update');
     Route::get('setting/flush', function () {
         \Cache::flush();
-
         return 'cache flush ok';
     });
 });
@@ -42,6 +41,5 @@ Route::get('logout', 'Admin\AuthController@logout');
  */
 Route::group(['namespace' => 'Home'], function () {
     Route::resource('/', 'HomeController@index');
-    Route::get('articles', 'ArticlesController@index');
-    Route::get('{slug}', 'ArticlesController@show');
+    Route::post('ajaxData', 'HomeController@ajaxData');
 });
