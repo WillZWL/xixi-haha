@@ -42,4 +42,5 @@ Route::get('logout', 'Admin\AuthController@logout');
 Route::group(['namespace' => 'Home'], function () {
     Route::resource('/', 'HomeController@index');
     Route::post('ajaxData', 'HomeController@ajaxData');
+    Route::get('publish', 'PublishController@index');
 });

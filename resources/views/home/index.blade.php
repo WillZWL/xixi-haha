@@ -152,8 +152,9 @@ function getStyle(box,top,left,index){
 	<div class="nav">
 		<h2 class="notice">XiXi-HaHa</h2>
 		<ul class="nav-r">
-			<li><a href="http://willzhangweilin.com/abouts">About</a></li>
-			<li><a href="http://willzhangweilin.com/contact">Contact</a></li>
+			<li><a href="http://willzhangweilin.com/abouts">关于</a></li>
+			<li><a href="http://willzhangweilin.com/contact">联系</a></li>
+			<li><a href="/publish">投稿</a></li>
 		</ul>
 	</div>
 </div>

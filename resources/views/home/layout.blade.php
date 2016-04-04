@@ -41,7 +41,7 @@
 	</div><!-- /.container -->
 
 	<footer class="blog-footer">
-		<p><a href="http://www.90door.com/">DaShuai's Blog</a> Based On Laravel5 and Bootstrap3.</p>
+		<p><a href="">Will's Blog</a> Based On Laravel5 and Bootstrap3.</p>
 		@if(setting('bei_an') != '')
 			<p>{!! setting('bei_an').' '.setting('tong_ji') !!}</p>
 		@endif

@@ -1,0 +1,133 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+body {
+    background: #ddd;
+    font-family: 'Microsoft YaHei','微软雅黑', sans-serif;
+    color: #666;
+}
+a {
+    text-decoration: none;
+}
+a:hover {
+    text-decoration:none;
+}
+ul,li {
+    list-style: none;
+}
+
+.header {
+    color: #F4EFF5;
+    padding:0.2em 4em;
+    background: #7C7C7C;
+}
+.nav {
+    font-size: 1em;
+    line-height: 2.5em;
+    height: 2.5em;
+    font-weight: bold;
+}
+.nav h2 {
+    font-size: 1.8em;
+    float: left;
+    margin:0;
+    padding: 0;
+    color:#e6a549;
+    line-height: 1.4em;
+    font-weight: bolder;
+}
+.nav ul {
+    text-align: right;
+    margin: 0;
+}
+.nav ul a {
+    color:#F4EFF5;
+    font-size:1.2em;
+}
+.nav ul li {
+    display: inline-block;
+    margin-right: 1em;
+}
+
+#wall {
+    width: 1200px;
+    height: auto;
+    margin: 0px auto;
+}
+#wall ul {
+    overflow: hidden;
+    padding: 1em 1em 2em 1em;
+}
+#wall ul li {
+    float: left;
+    margin: 1.5em;
+}
+#wall ul li a {
+    display: block;
+    width: 250px;
+    height: 270px;
+    background: #fff;
+    color: #666;
+    padding: 1em;
+    /* 阴影处理 */
+    box-shadow: 5px 5px 7px rgba(33,33,33,0.9);
+    -webkit-transform:rotate(-10deg);
+    position: relative;
+    border-radius: 6px;
+}
+#wall ul li:nth-child(even) a {
+    -webkit-transform:rotate(8deg);
+    top: 10px;
+    background:#D1FA62;
+}
+#wall ul li:nth-child(3n) a {
+    -webkit-transform:rotate(8deg);
+    top: -10px;
+    background:#F2AFD1;
+}
+#wall ul li:nth-child(4n) a {
+    -webkit-transform:rotate(5deg);
+    background:#5AF333;
+}
+#wall ul li:nth-child(5n) a {
+    -webkit-transform:rotate(5deg);
+    background:#C6FCC6;
+}
+#wall ul li:nth-child(6n) a {
+    -webkit-transform:rotate(8deg);
+    top: -10px;
+    background:#8AA1F3;
+}
+#wall ul li:nth-child(7n) a {
+    top: -10px;
+    background:#F7E89D;
+}
+#wall ul li:nth-child(8n) a {
+    -webkit-transform:rotate(5deg);
+    background:#C199E4;
+}
+#wall ul li a:hover {
+    box-shadow: 10px 10px 10px rgba(0,0,0,0.6);
+    -webkit-transform: scale(1.25);
+    z-index: 111;
+    -webkit-transition:-webkit-transform 0.2s linear;
+    border-radius: 6px;
+}
+#wall ul li h2 {
+    font-size: 18px;
+    font-weight: bold;
+    padding: 0;
+    margin: 0;
+    margin-bottom: 5px;
+}
+#wall ul li p {
+    line-height: 1.4em;
+    font-size: 1.2em;
+    font-family: '微软雅黑';
+    height: 185px;
+    overflow: hidden;
+}
+textarea {
+    min-height:250px;
+}
