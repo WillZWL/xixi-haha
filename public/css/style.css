@@ -91,14 +91,14 @@ li {
     position: relative;
 }
 #wrap .box {
-    width:380px;
+    width:400px;
     height:auto;
     padding:10px;
     border:none;
     float: left;
 }
 #wrap .box .info {
-    width:380px;
+    width:400px;
     height:auto;
     border-radius:8px;
     box-shadow: 0 0 11px #666;
@@ -106,7 +106,7 @@ li {
 }
 
 #wrap .box .info .pic {
-    width:320px;
+    width:350px;
     height:auto;
     margin: 0 auto;
     padding-bottom: 15px;
@@ -120,24 +120,24 @@ li {
 }
 
 #wrap .box .info .pic img {
-    width:320px;
+    width:350px;
     border-radius: 3px;
 }
 #wrap .box .info .pic p {
     line-height: 1.6em;
-    font-size: 1em;
+    font-size: 1.4em;
     word-wrap:break-word;
     padding:0;
     margin: 0;
 }
 #wrap .box .info .title {
-    width:320px;
+    width:350px;
     height:40px;
     margin: 0 auto;
-    line-height:40px;
+    line-height:2em;
     text-align:center;
     color:#666;
-    font-size:18px;
+    font-size:1.6em;
     font-weight: bold;
     overflow:hidden;
 }

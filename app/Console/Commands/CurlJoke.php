@@ -5,6 +5,7 @@ use Config;
 use Log;
 use App\Http\Requests\ArticleRequest;
 use Illuminate\Console\Command;
+use Symfony\Component\Console\Input\InputOption;
 
 class CurlJoke extends Command {
 
@@ -14,14 +15,14 @@ class CurlJoke extends Command {
      * @var string
      */
 
-    protected $name = 'curl:joke';
+    protected $name = 'joke';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Curl Joke From Api';
+    protected $description = 'Joke From Api && Cache Joke Data';
 
     /**
      * Create a new command instance.
@@ -33,24 +34,32 @@ class CurlJoke extends Command {
         parent::__construct();
     }
 
+    protected function getOptions()
+    {
+        return [
+            ['create_cache', null, InputOption::VALUE_NONE, 'An create cache option.'],
+        ];
+    }
+
     public function handle()
     {
-        // $this->curlApi();
+        if (!$this->option('create_cache')) {
+            $this->curlApi();
+        }
 
         $this->flushData();
-
         $this->cacheData();
     }
 
     private function cacheData() {
-        for ($i=1; $i <= 10; $i++) {
+        for ($i=1; $i <= 100; $i++) {
             $skip = 20*$i;
             $articles = Article::latest()->skip($skip)->take(20)->get();
             $data = array();
             $row = array();
             foreach ($articles as $k => $article) {
                 $row['title'] = $article->title;
-                $row['body'] = $article->body;
+                $row['body'] = str_replace("</p><p>", '', $article->body);
                 $data[] = $row;
             }
             $key = 'joke'.$i;
@@ -60,7 +69,7 @@ class CurlJoke extends Command {
 
     private function flushData()
     {
-        for ($i=0; $i < 10; $i++) {
+        for ($i=0; $i <= 100; $i++) {
             $key = 'joke'.$i;
             \Cache::tags('xixihaha')->forget($key);
         }
@@ -101,5 +110,10 @@ class CurlJoke extends Command {
         $res = json_decode($res);
         $list = $res->showapi_res_body->contentlist;
         return $list;
+    }
+
+    public function fire()
+    {
+
     }
 }

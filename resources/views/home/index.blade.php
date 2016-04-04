@@ -17,8 +17,8 @@ window.onload = function(){
 	var ajax_data = [];
 	var j = 1;
 	window.onscroll = function() {
-		if (j > 10) {
-			alert('到底了， 明天再来');
+		if (j > 100) {
+			// alert('到底了， 明天再来');
 
 			// to do footer
 
@@ -40,8 +40,9 @@ window.onload = function(){
 				ajax_data = data;
 			});
 			var wrap = document.getElementById('wrap');
+			var x = 0;
+			var random = 0;
 			for(i in ajax_data){
-				// alert(ajax_data[i].title);
 				//创建box
 				var box = document.createElement('div');
 				box.className = 'box';
@@ -56,16 +57,32 @@ window.onload = function(){
 				info.appendChild(title);
 				//创建a标记
 				var a = document.createElement('a');
-				a.innerHTML = ajax_data[i].title;
-				title.appendChild(a);
-				//创建pic
 				var pic = document.createElement('div');
 				pic.className = 'pic';
 				info.appendChild(pic);
-				//创建img
-				var p = document.createElement('p');
-				p.innerHTML = ajax_data[i].body;
-				pic.appendChild(p);
+				if (x == 19) {
+					a.innerHTML = '下面更多精彩';
+					title.appendChild(a);
+					random = Math.floor((Math.random() * 10) + 1);
+					var img = document.createElement('img');
+    				img.src = 'images/'+random+'.jpg';
+    				img.style.height = 'auto';
+    				pic.appendChild(img);
+				} else if ((x * j) % 50 == 1 ) {
+					a.innerHTML = '扫一扫';
+					title.appendChild(a);
+					var img = document.createElement('img');
+    				img.src = 'images/wechat.png';
+    				img.style.height = 'auto';
+    				pic.appendChild(img);
+				} else {
+					a.innerHTML = ajax_data[i].title;
+					title.appendChild(a);
+					var p = document.createElement('p');
+					p.innerHTML = ajax_data[i].body;
+					pic.appendChild(p);
+				}
+				x++;
 			}
 			PBL('wrap','box');
 			j++;
@@ -138,9 +155,8 @@ function getStyle(box,top,left,index){
 	<div class="nav">
 		<h2>XiXi-HaHa </h2>
 		<ul class="nav-r">
-			<li><a href="">About</a></li>
-			<li><a href="">Contact</a></li>
-			<li><a href="">Blog</a></li>
+			<li><a href="http://willzhangweilin.com/abouts">About</a></li>
+			<li><a href="http://willzhangweilin.com/contact">Contact</a></li>
 		</ul>
 	</div>
 </div>
@@ -150,7 +166,7 @@ function getStyle(box,top,left,index){
 <div id="wrap">
 	<div class="box">
     	<div class="info">
-	    	<div class="title"><a href="#">底下有福利，老司机的懂</a></div>
+	    	<div class="title"><a href="#">往下还有福利图，老司机懂</a></div>
             <div class="pic"><img src="images/{{ rand(1, 10) }}.jpg"></div>
     	</div>
     </div>
