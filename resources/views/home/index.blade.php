@@ -68,7 +68,7 @@ window.onload = function(){
     				img.src = 'images/'+random+'.jpg';
     				img.style.height = 'auto';
     				pic.appendChild(img);
-				} else if ((x * j) % 50 == 1 ) {
+				} else if ((x * j) % 100 == 1 ) {
 					a.innerHTML = '扫一扫';
 					title.appendChild(a);
 					var img = document.createElement('img');
@@ -80,6 +80,7 @@ window.onload = function(){
 					title.appendChild(a);
 					var p = document.createElement('p');
 					p.innerHTML = ajax_data[i].body;
+					p.style.height = 'auto';
 					pic.appendChild(p);
 				}
 				x++;
