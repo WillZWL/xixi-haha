@@ -9,7 +9,9 @@
 <script type="text/javascript" src="./js/jquery.min.js"></script>
 <script type="text/javascript" src="./js/bootstrap.min.js"></script>
 <style type="text/css">
-
+.contact-form-row {
+    margin-top: 20px;
+}
 </style>
 </head>
 <body>
@@ -24,64 +26,19 @@
     </div>
 </div>
 <div id='wall'>
+    <div class="contact-form-row">
+        @include('flash::message')
+    </div>
     <ul>
-        <li>
-            <a href="#">
-                <h2>Will:</h2>
-                <p>人生就像是写代码，不断的重复着运行、调试、更新、迭代。也许我们都不能写出完美的代码，但任何时候都要拥有一颗迭代的心</p>
-                <span>时间: 2016-04-03 03:46:15</span>
-            </a>
-        </li>
-
-        <li>
-            <a href="#">
-                <h2>Will:</h2>
-                <p>人生就像是写代码，不断的重复着运行、调试、更新、迭代。也许我们都不能写出完美的代码，但任何时候都要拥有一颗迭代的心, 人生就像是写代码，不断的重复着运行、调试、更新、迭代。也许我们都不能写出完美的代码，但任何时候都要拥有一颗迭代的心</p>
-                <span>时间: 2016-04-03 03:46:15</span>
-            </a>
-        </li>
-        <li>
-            <a href="#">
-                <h2>Will:</h2>
-                <p>人生就像是写代码，不断的重复着运行、调试、更新、迭代。也许我们都不能写出完美的代码，但任何时候都要拥有一颗迭代的心</p>
-                <span>时间: 2016-04-03 03:46:15</span>
-            </a>
-        </li>
-        <li>
-            <a href="#">
-                <h2>Will:</h2>
-                <p>人生就像是写代码，不断的重复着运行、调试、更新、迭代。也许我们都不能写出完美的代码，但任何时候都要拥有一颗迭代的心</p>
-                <span>时间: 2016-04-03 03:46:15</span>
-            </a>
-        </li>
-        <li>
-            <a href="#">
-                <h2>Will:</h2>
-                <p>人生就像是写代码，不断的重复着运行、调试、更新、迭代。也许我们都不能写出完美的代码，但任何时候都要拥有一颗迭代的心</p>
-                <span>时间: 2016-04-03 03:46:15</span>
-            </a>
-        </li>
-        <li>
-            <a href="#">
-                <h2>Will:</h2>
-                <p>人生就像是写代码，不断的重复着运行、调试、更新、迭代。也许我们都不能写出完美的代码，但任何时候都要拥有一颗迭代的心</p>
-                <span>时间:      2016-04-03 03:46:15</span>
-            </a>
-        </li>
-        <li>
-            <a href="#">
-                <h2>Will:</h2>
-                <p>人生就像是写代码，不断的重复着运行、调试、更新、迭代。也许我们都不能写出完美的代码，但任何时候都要拥有一颗迭代的心</p>
-                <span>时间: 2016-04-03 03:46:15</span>
-            </a>
-        </li>
-        <li>
-            <a href="#">
-                <h2>Will:</h2>
-                <p>人生就像是写代码，不断的重复着运行、调试、更新、迭代。也许我们都不能写出完美的代码，但任何时候都要拥有一颗迭代的心</p>
-                <span>时间:       2016-04-03 03:46:15</span>
-            </a>
-        </li>
+        @foreach ($articles as $article)
+            <li>
+                <a href="">
+                    <h2>{{ $article->title }}</h2>
+                    <p>{{ $article->body }}</p>
+                    <span>时间: {{ $article->created_at }}</span>
+                </a>
+            </li>
+        @endforeach
     </ul>
     <div>
         <input class="btn btn-lg btn-success btn-block" type="button" value="投稿" data-toggle="modal" data-target="#modal-folder-create">
@@ -90,9 +47,8 @@
 <div class="modal fade" id="modal-folder-create">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form method="POST" action="/admin/upload/folder" class="form-horizontal">
-                <input type="hidden" name="_token" value="">
-                <input type="hidden" name="folder" value="">
+            <form method="POST" action="/publish/index" class="form-horizontal">
+                <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">
                         ×
@@ -105,7 +61,7 @@
                             标题：
                         </label>
                         <div class="col-sm-8">
-                            <input type="text" id="new_title" name="title" class="form-control" placeholder="请输入标题">
+                            <input type="text" id="new_title" name="title" class="form-control" placeholder="请输入标题" notEmpty>
                         </div>
                     </div>
                     <div class="form-group">
@@ -113,7 +69,7 @@
                             内容：
                         </label>
                         <div class="col-sm-8">
-                            <textarea name="content" class="form-control" placeholder="请输入正文内容"></textarea>
+                            <textarea name="body" class="form-control" placeholder="请输入正文内容" notEmpty></textarea>
                         </div>
                     </div>
                     <div class="form-group">
@@ -121,7 +77,7 @@
                             昵称：
                         </label>
                         <div class="col-sm-8">
-                            <input type="text" id="new_title" name="title" class="form-control" placeholder="请输入昵称">
+                            <input type="text" id="new_title" name="username" class="form-control" placeholder="请输入昵称">
                         </div>
                     </div>
                 </div>
@@ -129,9 +85,7 @@
                     <button type="button" class="btn btn-default" data-dismiss="modal">
                         取消
                     </button>
-                    <button type="submit" class="btn btn-primary">
-                        提交
-                    </button>
+                    <input type="submit" class="btn btn-primary" value="提交">
                 </div>
             </form>
         </div>

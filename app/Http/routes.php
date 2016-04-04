@@ -43,4 +43,5 @@ Route::group(['namespace' => 'Home'], function () {
     Route::resource('/', 'HomeController@index');
     Route::post('ajaxData', 'HomeController@ajaxData');
     Route::get('publish', 'PublishController@index');
+    Route::post('publish/index', 'PublishController@store');
 });

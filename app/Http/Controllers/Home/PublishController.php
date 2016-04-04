@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\Home;
 
-// use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ArticleRequest;
+use App\Article;
 
 // use Illuminate\Http\Request;
 
@@ -17,17 +18,8 @@ class PublishController extends Controller {
 	public function index()
 	{
 		//
-		return view('home.publish.index');
-	}
-
-	/**
-	 * Show the form for creating a new resource.
-	 *
-	 * @return Response
-	 */
-	public function create()
-	{
-		//
+		$articles = Article::latest()->take(8)->select('title', 'body', 'created_at')->get();
+		return view('home.publish.index', compact('articles'));
 	}
 
 	/**
@@ -35,8 +27,13 @@ class PublishController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store()
+	public function store(ArticleRequest $request)
 	{
-		//
+		if (Article::create($request->all())) {
+			flash()->success('Thanks For Your Funny Story, Will Reply as soon as possible');
+		} else {
+			flash()->error('Sorry, Your Story post Failed, Please check Your Info.');
+		}
+		return redirect('publish');
 	}
 }
