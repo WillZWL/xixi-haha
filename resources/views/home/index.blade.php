@@ -18,17 +18,8 @@ window.onload = function(){
 	var j = 1;
 	window.onscroll = function() {
 		if (j > 100) {
-			// alert('到底了， 明天再来');
-
 			// to do footer
 
-			// var wrap = document.getElementById('wrap');
-			// var footer = document.createElement('div');
-			// footer.className = 'footer';
-			// wrap.appendChild(footer);
-			// var p = document.createElement('p');
-			// p.innerHTML = '到底了， 明天再来';
-			// footer.appendChild(p);
 		} else {
 			scroll();
 		}
@@ -68,7 +59,7 @@ window.onload = function(){
     				img.src = 'images/'+random+'.jpg';
     				img.style.height = 'auto';
     				pic.appendChild(img);
-				} else if ((x * j) % 100 == 1 ) {
+				} else if ((x * j) % 50 == 1 ) {
 					a.innerHTML = '扫一扫';
 					title.appendChild(a);
 					var img = document.createElement('img');
@@ -154,7 +145,7 @@ function getStyle(box,top,left,index){
 <body>
 <div class="header">
 	<div class="nav">
-		<h2>XiXi-HaHa </h2>
+		<h2>XiXi-HaHa</h2>
 		<ul class="nav-r">
 			<li><a href="http://willzhangweilin.com/abouts">About</a></li>
 			<li><a href="http://willzhangweilin.com/contact">Contact</a></li>
@@ -167,7 +158,7 @@ function getStyle(box,top,left,index){
 <div id="wrap">
 	<div class="box">
     	<div class="info">
-	    	<div class="title"><a href="#">往下还有福利图，老司机懂</a></div>
+	    	<div class="title"><a href="#">往下有福利图,老司机懂</a></div>
             <div class="pic"><img src="images/{{ rand(1, 10) }}.jpg"></div>
     	</div>
     </div>
