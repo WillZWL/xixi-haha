@@ -45,7 +45,7 @@ class SettingsController extends Controller
             }
         }
         //更新设置缓存
-        \Cache::forget('settings_array');
+        \Cache::forget('xiha_settings_array');
 
         return redirect('admin/settings/index');
     }

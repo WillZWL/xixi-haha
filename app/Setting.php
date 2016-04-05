@@ -9,7 +9,7 @@ class Setting extends Model
 
     public static function getSettingsArr()
     {
-        return \Cache::rememberForever('settings_array', function () {
+        return \Cache::rememberForever('xiha_settings_array', function () {
             /*$aa=\App\Setting::all();
             $settings=array();
             foreach($aa as $setting)
