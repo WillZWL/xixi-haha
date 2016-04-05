@@ -24,7 +24,6 @@ window.onload = function(){
 			scroll();
 		}
 	}
-
 	function scroll(){
 		if(getCheck()){
 			$.post("ajaxData", { 'page':j }, function(data, status){
@@ -143,10 +142,14 @@ function getStyle(box,top,left,index){
 	$("#title").find('img').attr('src', '');
 }
 </script>
+
+
 <style type="text/css">
 	.notice {
 		color: #e6a549;
 	}
+	#goTop{position:absolute;display:none;width:50px;height:48px;background:#fff url(images/gotop.png) no-repeat 16px 15px;border:solid 1px #f9f9f8;border-radius:6px;box-shadow:0 1px 1px rgba(0, 0, 0, 0.2);cursor:pointer}
+	#goTop:hover{height:50px;background-position:16px 16px;box-shadow:0 1px 1px rgba(0, 0, 0, 0.3)}
 </style>
 </head>
 <body>
@@ -193,6 +196,23 @@ function getStyle(box,top,left,index){
     </div>
     @endforeach
 </div>
-
+<div id="goTop" class="goTop"></div>
+<script type="text/javascript">
+    $(window).scroll(function(){
+        var sc=$(window).scrollTop();
+        var rwidth=$(window).width()+$(document).scrollLeft();
+        var rheight=$(window).height()+$(document).scrollTop();
+        if(sc>0){
+            $("#goTop").css("display","block");
+            $("#goTop").css("left",(rwidth-80)+"px");
+            $("#goTop").css("top",(rheight-120)+"px");
+        }else{
+            $("#goTop").css("display","none");
+        }
+    });
+    $("#goTop").click(function(){
+        $('body,html').animate({scrollTop:0},300);
+    });
+</script>
 </body>
 </html>
