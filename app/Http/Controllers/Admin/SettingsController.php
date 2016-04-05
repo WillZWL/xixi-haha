@@ -49,4 +49,10 @@ class SettingsController extends Controller
 
         return redirect('admin/settings/index');
     }
+
+    public function flush()
+    {
+        \Cache::flush();
+        return redirect('admin/settings/index');
+    }
 }
