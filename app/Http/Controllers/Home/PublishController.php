@@ -18,7 +18,7 @@ class PublishController extends Controller {
 	public function index()
 	{
 		//
-		$articles = Article::latest()->take(8)->select('title', 'body', 'created_at')->get();
+		$articles = $this->getData();
 		return view('home.publish.index', compact('articles'));
 	}
 
@@ -35,5 +35,22 @@ class PublishController extends Controller {
 			flash()->error('Sorry, Your Story post Failed, Please check Your Info.');
 		}
 		return redirect('publish');
+	}
+
+	private function getData()
+	{
+		$articles = \Cache::remember('publish_index', 60, function() {
+		    $list = Article::latest()->take(8)->select('title', 'body', 'created_at')->get();
+		    $data = [];
+		    foreach ($list as $value) {
+		    	$row['title'] = $value->title;
+		    	$row['body'] = $value->body;
+		    	$date = (array)$value->created_at;
+		    	$row['created_at'] = date('Y-m-d H:i:s',strtotime($date['date']));
+		    	$data[] = $row;
+		    }
+		    return $data;
+		});
+		return $articles;
 	}
 }

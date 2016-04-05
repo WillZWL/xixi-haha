@@ -33,9 +33,9 @@
         @foreach ($articles as $article)
             <li>
                 <a href="">
-                    <h2>{{ $article->title }}</h2>
-                    <p>{{ $article->body }}</p>
-                    <span>时间: {{ $article->created_at }}</span>
+                    <h2>{{ $article['title'] }}</h2>
+                    <p>{{ $article['body'] }}</p>
+                    <span>时间: {{ $article['created_at'] }}</span>
                 </a>
             </li>
         @endforeach

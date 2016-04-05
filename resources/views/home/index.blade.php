@@ -27,7 +27,11 @@ window.onload = function(){
 	function scroll(){
 		if(getCheck()){
 			$.post("ajaxData", { 'page':j }, function(data, status){
-				ajax_data = data;
+				if (data.status == 'failed') {
+					ajax_data = '';
+				} else {
+					ajax_data = data.data;
+				}
 			});
 			var wrap = document.getElementById('wrap');
 			var x = 0;
@@ -188,9 +192,9 @@ function getStyle(box,top,left,index){
     @foreach ($articles as $k => $article)
     <div class="box">
     	<div class="info">
-	    	<div class="title">{{ $article->title }}</div>
+	    	<div class="title">{{ $article['title'] }}</div>
             <div class="pic">
-            	<p>{{ $article->body }}</p>
+            	<p>{{ $article['body'] }}</p>
             </div>
     	</div>
     </div>

@@ -14,8 +14,14 @@ class Article extends Model
 
     public static function getIndexData()
     {
-        return \Cache::rememberForever('xiha_index', function () {
-            $articles = Article::latest()->take(20)->select('title', 'body')->get();
+        return \Cache::remember('xiha_index', 60, function () {
+            $list = Article::latest()->take(20)->select('title', 'body')->get();
+            $articles = [];
+            foreach ($list as $value) {
+                $row['title'] = $value->title;
+                $row['body'] = $value->body;
+                $articles[] = $row;
+            }
             return $articles;
         });
     }

@@ -29,9 +29,19 @@ class HomeController extends Controller
 
     public function ajaxData()
     {
-        $n = $_POST['page'];
-        $key = 'joke'.$n;
-        $data = \Cache::tags('xixihaha')->get($key);
+        $n = \Request::input('page', 1);
+        if ($n <= 100) {
+            $key = 'joke'.$n;
+            $value = \Cache::tags('xixihaha')->get($key);
+            if ($value) {
+                $data['data'] = $value;
+                $data['status'] = 'success';
+            } else {
+                $data['status'] = 'failed';
+            }
+        } else {
+            $data['status'] = 'failed';
+        }
         return response()->json($data);
     }
 }
