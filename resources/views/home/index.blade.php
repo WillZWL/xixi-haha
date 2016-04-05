@@ -139,6 +139,8 @@ function getStyle(box,top,left,index){
         "opacity":"1"
     },999);
     getStartNum = index;//更新请求数据的条数位置
+
+	$("#title").find('img').attr('src', '');
 }
 </script>
 <style type="text/css">
@@ -159,7 +161,9 @@ function getStyle(box,top,left,index){
 	</div>
 </div>
 <section id="title">
-	<h2>嘻嘻&nbsp;(*^_^*)&nbsp;哈哈</h2>
+	<h2>嘻嘻&nbsp;(*^_^*)&nbsp;哈哈
+	<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1258409999'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1258409999%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+	</h2>
 </section>
 <div id="wrap">
 	<div class="box">
@@ -189,5 +193,6 @@ function getStyle(box,top,left,index){
     </div>
     @endforeach
 </div>
+
 </body>
 </html>
