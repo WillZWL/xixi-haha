@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset='utf-8'>
-<title>嘻嘻&nbsp;(*^_^*)&nbsp;哈哈</title>
+<title>嘻嘻&nbsp;(*^_^*)&nbsp;哈哈 — (By Will)</title>
 <link href="./css/bootstrap.min.css" rel="stylesheet" type="text/css" media="all" />
 <link href="./css/publish.css" rel="stylesheet" type="text/css" media="all"/>
 <script type="text/javascript" src="./js/jquery.js"></script>
@@ -88,6 +88,17 @@
                     <input type="submit" class="btn btn-primary" value="提交">
                 </div>
             </form>
+        </div>
+    </div>
+</div>
+<div class="footer">
+    <div class="container">
+        <div class="clearfix"></div>
+        <div class="bottom">
+            <p>Copyright &copy; 2016-2018.Will All rights reserved.<a href="http://www.miitbeian.gov.cn">鄂ICP备16004814号 </a>
+            <br/>
+            Developed By <a href="/abouts" target="_blank">Will Zhang</a>,&nbsp;&nbsp;Powered By <a href="https://laravel.com/">Laravel</a>&nbsp;&nbsp;&&&nbsp;&nbsp;<a href="http://getbootstrap.com/">Bootstrap</a><br/>
+            Run On <a href="https://www.aliyun.com">Aliyun's</a> Elastic Compute Service
         </div>
     </div>
 </div>

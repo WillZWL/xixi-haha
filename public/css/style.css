@@ -141,3 +141,47 @@ li {
     font-weight: bold;
     overflow:hidden;
 }
+.footer {
+    background: #F9F9F9;
+    background-size: cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    -ms-background-size: cover;
+    text-align: center;
+    padding: 0 0 1em;
+    margin-top: 5em;
+    position: absolute;
+    display: none;
+    opacity: 1;
+    width: 100%;
+}
+.footer .bottom a {
+    color: #E8C99B;
+}
+.footer h4 {
+    font-size: 1.4em;
+    text-align: left;
+    padding: 1em;
+    color: #241103;
+}
+.footer p {
+    font-size: 0.9em;
+    color: #241103;
+    line-height: 1.8em;
+    text-align: centre;
+    margin: 1.5em 0;
+}
+.bottom p {
+    font-size: 1.1em;
+    font-weight: 400;
+    color: #aeaeae;
+    line-height: 1.8em;
+    text-align:center;
+}
+.bottom a {
+    color: #d4a258;
+}
+.bottom a:hover {
+    color: #241103;
+}

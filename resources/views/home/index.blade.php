@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>嘻嘻哈哈(By Will.)</title>
+<title>嘻嘻&nbsp;(*^_^*)&nbsp;哈哈 — (By Will)</title>
 <link href="./css/style.css" rel="stylesheet" type="text/css" media="all" />
 <script type="text/javascript" src="./js/jquery.js"></script>
 <meta name="csrf-token" content="{{ csrf_token() }}" />
@@ -18,8 +18,6 @@ window.onload = function(){
 	var j = 1;
 	window.onscroll = function() {
 		if (j > 100) {
-			// to do footer
-
 		} else {
 			scroll();
 		}
@@ -29,6 +27,9 @@ window.onload = function(){
 			$.post("ajaxData", { 'page':j }, function(data, status){
 				if (data.status == 'failed') {
 					ajax_data = '';
+					if (j > 5) {
+						footer();
+					}
 				} else {
 					ajax_data = data.data;
 				}
@@ -85,6 +86,14 @@ window.onload = function(){
 	}
 }
 
+function footer() {
+	var f_top = getLastH();
+	f_top = f_top + 250;
+	$('.footer').css({
+		'display':'block',
+		'top':f_top+'px',
+	});
+}
 function PBL(wrap,box){
 	var wrap = document.getElementById(wrap);
 	var boxs  = getClass(wrap,box);
@@ -142,8 +151,7 @@ function getStyle(box,top,left,index){
         "opacity":"1"
     },999);
     getStartNum = index;//更新请求数据的条数位置
-
-	$("#title").find('img').attr('src', '');
+	$("#title").find('img').remove();
 }
 </script>
 
@@ -199,6 +207,17 @@ function getStyle(box,top,left,index){
     	</div>
     </div>
     @endforeach
+</div>
+<div class="footer">
+    <div class="container">
+        <div class="clearfix"></div>
+        <div class="bottom">
+            <p>Copyright &copy; 2016-2018.Will All rights reserved.<a href="http://www.miitbeian.gov.cn">鄂ICP备16004814号 </a>
+            <br/>
+            Developed By <a href="/abouts" target="_blank">Will Zhang</a>,&nbsp;Powered By <a href="https://laravel.com/">Laravel</a>&nbsp;&&&nbsp;<a href="http://getbootstrap.com/">Bootstrap</a><br/>
+            Run On <a href="https://www.aliyun.com">Aliyun's</a> Elastic Compute Service
+        </div>
+    </div>
 </div>
 <div id="goTop" class="goTop"></div>
 <script type="text/javascript">

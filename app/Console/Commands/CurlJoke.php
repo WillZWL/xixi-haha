@@ -9,26 +9,10 @@ use Symfony\Component\Console\Input\InputOption;
 
 class CurlJoke extends Command {
 
-    /**
-     * The console command name.
-     *
-     * @var string
-     */
-
     protected $name = 'joke';
 
-    /**
-     * The console command description.
-     *
-     * @var string
-     */
     protected $description = 'Joke From Api && Cache Joke Data';
 
-    /**
-     * Create a new command instance.
-     *
-     * @return void
-     */
     public function __construct()
     {
         parent::__construct();
