@@ -19,7 +19,7 @@ class Article extends Model
             $articles = [];
             foreach ($list as $value) {
                 $row['title'] = $value->title;
-                $row['body'] = $value->body;
+                $row['body'] = str_replace("</p><p>", '', $value->body);
                 $articles[] = $row;
             }
             return $articles;
