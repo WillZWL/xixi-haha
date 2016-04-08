@@ -59,7 +59,7 @@ class CurlJoke extends Command {
         }
     }
 
-    private function stroeDate($data) {
+    private function stroeData($data) {
         foreach ($data as $row) {
             $article['title'] = $row->title;
             $article['body'] = $row->text;
@@ -73,7 +73,7 @@ class CurlJoke extends Command {
         for ($i=1; $i <= 5; $i++) {
             try {
                 $curl_result = $this->curlPost($i);
-                $this->stroeDate($curl_result);
+                $this->stroeData($curl_result);
             } catch (Exception $e) {
                 log::info('Curl Api Failed');
             }
