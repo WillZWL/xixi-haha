@@ -63,7 +63,14 @@ class CurlJoke extends Command {
         foreach ($data as $row) {
             $article['title'] = $row->title;
             $article['body'] = $row->text;
-            Article::create($article);
+            try {
+                $result = Article::firstOrNew($article);
+                if (!$result->exists) {
+                    Article::create($article);
+                }
+            } catch (Exception $e) {
+                log::info('The article duplicate');
+            }
         }
     }
 
@@ -92,8 +99,10 @@ class CurlJoke extends Command {
         curl_setopt($ch , CURLOPT_URL , $url);
         $res = curl_exec($ch);
         $res = json_decode($res);
-        $list = $res->showapi_res_body->contentlist;
-        return $list;
+        if ($res->showapi_res_code == 0) {
+            $list = $res->showapi_res_body->contentlist;
+            return $list;
+        }
     }
 
     public function fire()
