@@ -8,7 +8,7 @@ use Log;
 class WechatController extends Controller
 {
 
-    public function server()
+    public function serve()
     {
         Log::info('request arrived.');
         $wechat = app('wechat');
