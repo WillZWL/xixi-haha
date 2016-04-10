@@ -159,6 +159,7 @@ return [
 		'Laracasts\Flash\FlashServiceProvider',
 		'GrahamCampbell\HTMLMin\HTMLMinServiceProvider',
 		'Roumen\Sitemap\SitemapServiceProvider',
+		'Overtrue\LaravelWechat\ServiceProvider'
 
 	],
 
@@ -213,6 +214,7 @@ return [
 		'Flash' => 'Laracasts\Flash\Flash',
 		'Debugbar' => 'Barryvdh\Debugbar\Facade',
 		'HTMLMin' => 'GrahamCampbell\HTMLMin\Facades\HTMLMin',
+		'Wechat' => 'Overtrue\LaravelWechat\Facade::class',
 
 	],
 

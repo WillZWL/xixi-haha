@@ -42,3 +42,9 @@ Route::group(['namespace' => 'Home'], function () {
     Route::get('publish', 'PublishController@index');
     Route::post('publish/index', 'PublishController@store');
 });
+/*
+ * wechat
+*/
+Route::any('/wechat', 'Home\WechatController@serve');
+
+

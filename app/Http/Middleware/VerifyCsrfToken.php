@@ -17,4 +17,8 @@ class VerifyCsrfToken extends BaseVerifier
     {
         return parent::handle($request, $next);
     }
+
+    protected $except = [
+        '/wechat',
+    ];
 }
