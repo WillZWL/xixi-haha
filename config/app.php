@@ -214,8 +214,7 @@ return [
 		'Flash' => 'Laracasts\Flash\Flash',
 		'Debugbar' => 'Barryvdh\Debugbar\Facade',
 		'HTMLMin' => 'GrahamCampbell\HTMLMin\Facades\HTMLMin',
-		'Wechat' => 'Overtrue\LaravelWechat\Facade::class',
-
+		'Wechat' => Overtrue\LaravelWechat\Facade::class,
 	],
 
 ];
