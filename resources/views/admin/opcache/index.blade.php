@@ -2,7 +2,7 @@
 <meta charset="utf-8">
 <html>
 <head>
-    <style>
+    <style type="text/css">
         body {font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;margin: 0;padding: 0;}
 
         #container {width: 1024px;margin: auto;position: relative;}
@@ -61,7 +61,7 @@
     </style>
     <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.0.1/d3.v3.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-    <script>
+    <script type="text/javascript">
         var hidden = {};
         function toggleVisible(head, row) {
             if (!hidden[row]) {
@@ -142,7 +142,7 @@
     <div id="close-partition">&#10006; Close Visualisation</div>
     <div id="partition"></div>
 
-    <script>
+    <script type="text/javascript">
         var dataset = <?php echo $dataModel->getGraphDataSetJson(); ?>;
         var width = 400,
             height = 400,
@@ -168,8 +168,7 @@
                       .enter().append("path")
                       .attr("fill", function(d, i) { return colour(i); })
                       .attr("d", arc)
-                      .each(function(d) { this._current = d; }); // store the initial values
-
+                      .each(function(d) { this._current = d; });
         d3.selectAll("input").on("change", change);
         set_text("memory");
 
@@ -201,21 +200,16 @@
         }
 
         function change() {
-            // Filter out any zero values to see if there is anything left
             var remove_zero_values = dataset[this.value].filter(function(value) {
                 return value > 0;
             });
-
-            // Skip if the value is undefined for some reason
             if (typeof dataset[this.value] !== 'undefined' && remove_zero_values.length > 0) {
                 $('#graph').find('> svg').show();
-                path = path.data(pie(dataset[this.value])); // update the data
-                path.transition().duration(750).attrTween("d", arcTween); // redraw the arcs
-            // Hide the graph if we can't draw it correctly, not ideal but this works
+                path = path.data(pie(dataset[this.value]));
+                path.transition().duration(750).attrTween("d", arcTween);
             } else {
                 $('#graph').find('> svg').hide();
             }
-
             set_text(this.value);
         }
 
@@ -242,7 +236,6 @@
                 return value;
             }
         }
-
         var w = window.innerWidth,
             h = window.innerHeight,
             x = d3.scale.linear().range([0, w]),
@@ -313,16 +306,13 @@
         $(document).ready(function() {
             function handleVisualisationToggle(close) {
                 $('#partition, #close-partition').fadeToggle();
-                // Is the visualisation being closed? If so show the status tab again
                 if (close) {
                     $('#tab-visualise').removeAttr('checked');
                     $('#tab-status').trigger('click');
                 }
             }
             $('label[for="tab-visualise"], #close-partition').on('click', function() {
-
                 handleVisualisationToggle(($(this).attr('id') === 'close-partition'));
-
             });
             $(document).keyup(function(e) {
                 if (e.keyCode == 27) handleVisualisationToggle(true);
