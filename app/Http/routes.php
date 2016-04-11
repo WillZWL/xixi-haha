@@ -24,6 +24,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'auth
     Route::get('settings/index', 'SettingsController@index');
     Route::patch('settings/index', 'SettingsController@update');
     Route::get('setting/flush', 'SettingsController@flush');
+    Route::get('opcache', 'OpcacheController@index');
 });
 
 /*
