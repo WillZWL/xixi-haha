@@ -38,7 +38,6 @@ class SettingsController extends Controller
         foreach ($request->all() as $name => $value) {
             if ($name != '_method' && $name != '_token') {
                 $setting = Setting::whereName($name)->first();
-
                 $setting->update([
                         'value' => $value,
                     ]);

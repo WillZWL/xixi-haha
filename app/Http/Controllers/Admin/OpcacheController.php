@@ -21,4 +21,9 @@ class OpcacheController extends Controller
 
         return view('admin.opcache.index', compact('dataModel'));
     }
+
+    public function restart()
+    {
+        return redirect('admin.admin.index');
+    }
 }

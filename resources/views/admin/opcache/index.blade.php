@@ -4,59 +4,34 @@
 <head>
     <style type="text/css">
         body {font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;margin: 0;padding: 0;}
-
         #container {width: 1024px;margin: auto;position: relative;}
         h1 {padding: 10px 0;}
         table {border-collapse: collapse;}
         tbody tr:nth-child(even) {background-color: #eee;}
         p.capitalize {text-transform: capitalize;}
-
         .tabs {position: relative;float: left;width: 60%;}
-
         .tab {float: left;}
-
         .tab label {background: #eee;padding: 10px 12px;border: 1px solid #ccc;margin-left: -1px;position: relative;left: 1px;}
-
         .tab [type=radio] {display: none;}
-
         .tab th, .tab td {padding: 8px 12px;}
-
         .content {position: absolute;top: 28px;left: 0;background: white;border: 1px solid #ccc;height: 450px;width: 100%;overflow: auto;}
-
         .content table {width: 100%;}
-
         .content th, .tab:nth-child(3) td {text-align: left;}
-
         .content td {text-align: right;}
-
         .clickable {cursor: pointer;}
-
         [type=radio]:checked ~ label {background: white;border-bottom: 1px solid white;z-index: 2;}
-
         [type=radio]:checked ~ label ~ .content {z-index: 1;}
-
         #graph {float: right;width: 40%;position: relative;}
-
         #graph > form {position: absolute;right: 60px;top: -20px;}
-
         #graph > svg {position: absolute;top: 0;right: 0;}
-
         #stats {position: absolute;right: 125px;top: 145px;}
-
         #stats th, #stats td {padding: 6px 10px;font-size: 0.8em;}
-
         #partition {position: absolute;width: 100%;height: 100%;z-index: 10;top: 0;left: 0;background: #ddd;display: none;}
-
         #close-partition {display: none;position: absolute;z-index: 20;right: 15px;top: 15px;background: #f9373d;color: #fff;padding: 12px 15px;}
-
         #close-partition:hover {background: #D32F33;cursor: pointer;}
-
         #partition rect {stroke: #fff;fill: #aaa;fill-opacity: 1;}
-
         #partition rect.parent {cursor: pointer;fill: steelblue;}
-
         #partition text {pointer-events: none;}
-
         label {cursor: pointer;}
     </style>
     <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.0.1/d3.v3.min.js"></script>
@@ -155,14 +130,12 @@
 
         var colour = d3.scale.customColours();
         var pie = d3.layout.pie().sort(null);
-
         var arc = d3.svg.arc().innerRadius(radius - 20).outerRadius(radius - 50);
         var svg = d3.select("#graph").append("svg")
                     .attr("width", width)
                     .attr("height", height)
                     .append("g")
                     .attr("transform", "translate(" + width / 2 + "," + height / 2 + ")");
-
         var path = svg.selectAll("path")
                       .data(pie(dataset.memory))
                       .enter().append("path")
@@ -212,7 +185,6 @@
             }
             set_text(this.value);
         }
-
         function arcTween(a) {
             var i = d3.interpolate(this._current, a);
             this._current = i(0);
@@ -220,7 +192,6 @@
                 return arc(i(t));
             };
         }
-
         function size_for_humans(bytes) {
             if (bytes > 1048576) {
                 return (bytes/1048576).toFixed(2) + ' MB';
@@ -228,7 +199,6 @@
                 return (bytes/1024).toFixed(2) + ' KB';
             } else return bytes + ' bytes';
         }
-
         function format_value(value) {
             if (dataset["TSEP"] == 1) {
                 return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -240,7 +210,6 @@
             h = window.innerHeight,
             x = d3.scale.linear().range([0, w]),
             y = d3.scale.linear().range([0, h]);
-
         var vis = d3.select("#partition")
                     .style("width", w + "px")
                     .style("height", h + "px")
@@ -250,18 +219,14 @@
 
         var partition = d3.layout.partition()
                 .value(function(d) { return d.size; });
-
         root = JSON.parse('<?php echo json_encode($dataModel->getD3Scripts()); ?>');
-
         var g = vis.selectAll("g")
                    .data(partition.nodes(root))
                    .enter().append("svg:g")
                    .attr("transform", function(d) { return "translate(" + x(d.y) + "," + y(d.x) + ")"; })
                    .on("click", click);
-
         var kx = w / root.dx,
                 ky = h / 1;
-
         g.append("svg:rect")
          .attr("width", root.dy * kx)
          .attr("height", function(d) { return d.dx * ky; })
@@ -271,31 +236,25 @@
          .attr("transform", transform)
          .attr("dy", ".35em")
          .style("opacity", function(d) { return d.dx * ky > 12 ? 1 : 0; })
-         .text(function(d) { return d.name; })
+         .text(function(d) { return d.name; });
 
-        d3.select(window)
-          .on("click", function() { click(root); })
+        d3.select(window).on("click", function() { click(root); });
 
         function click(d) {
             if (!d.children) return;
-
             kx = (d.y ? w - 40 : w) / (1 - d.y);
             ky = h / d.dx;
             x.domain([d.y, 1]).range([d.y ? 40 : 0, w]);
             y.domain([d.x, d.x + d.dx]);
-
             var t = g.transition()
                      .duration(d3.event.altKey ? 7500 : 750)
                      .attr("transform", function(d) { return "translate(" + x(d.y) + "," + y(d.x) + ")"; });
-
             t.select("rect")
              .attr("width", d.dy * kx)
              .attr("height", function(d) { return d.dx * ky; });
-
             t.select("text")
              .attr("transform", transform)
              .style("opacity", function(d) { return d.dx * ky > 12 ? 1 : 0; });
-
             d3.event.stopPropagation();
         }
 
