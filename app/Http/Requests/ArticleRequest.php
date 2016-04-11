@@ -1,5 +1,6 @@
-<?php namespace App\Http\Requests;
+<?php
 
+namespace App\Http\Requests;
 
 class ArticleRequest extends Request
 {

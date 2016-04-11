@@ -23,7 +23,7 @@ class WechatController extends Controller
     {
         switch ($message->MsgType) {
             case 'event':
-                # 事件消息...
+                return $this->eventHandler($message);
                 break;
             case 'text':
                 return $this->textHandler($message);
@@ -41,5 +41,10 @@ class WechatController extends Controller
         $msg = $message->Content;
         $content = "Hello ".$user. ", You want to ask ". $from ."  ".$msg;
         return $content;
+    }
+
+    protected function eventHandler($message)
+    {
+
     }
 }
