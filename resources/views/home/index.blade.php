@@ -2,7 +2,8 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>嘻嘻&nbsp;(*^_^*)&nbsp;哈哈 — (By Will)</title>
+<title>嘻嘻&nbsp;(*^_^*)&nbsp;哈哈 — 幽默笑话，内涵段子， 尽在嘻嘻哈哈</title>
+<meta name="keywords" content="嘻嘻哈哈, 幽默笑话，内涵段子，趣闻，搞笑">
 <link href="./css/style.css" rel="stylesheet" type="text/css" media="all" />
 <script type="text/javascript" src="./js/jquery.js"></script>
 <meta name="csrf-token" content="{{ csrf_token() }}" />
