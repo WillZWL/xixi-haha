@@ -45,7 +45,8 @@ class CurlJoke extends Command {
             $row = array();
             foreach ($articles as $k => $article) {
                 $row['title'] = $article->title;
-                $row['body'] = str_replace("</p><p>", '', $article->body);
+                $row['body'] = str_replace("<p>", '', $article->body);
+                $row['body'] = str_replace("</p>", '', $row['body']);
                 $data[] = $row;
             }
             $key = 'joke'.$i;
