@@ -45,8 +45,7 @@ class CurlJoke extends Command {
             $row = array();
             foreach ($articles as $k => $article) {
                 $row['title'] = $article->title;
-                $row['body'] = str_replace("<p>", '', $article->body);
-                $row['body'] = str_replace("</p>", '', $row['body']);
+                $row['body'] = str_replace(array('<p>', '</p>'), '', $article->body);
                 $data[] = $row;
             }
             $key = 'joke'.$i;
@@ -65,7 +64,7 @@ class CurlJoke extends Command {
     private function stroeData($data) {
         foreach ($data as $row) {
             $article['title'] = $row->title;
-            $article['body'] = $row->text;
+            $article['body'] = str_replace(array('<p>', '</p>'), '', $row->text);
             try {
                 $result = Article::firstOrNew($article);
                 if (!$result->exists) {
