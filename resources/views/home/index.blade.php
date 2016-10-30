@@ -25,7 +25,7 @@ window.onload = function(){
 	}
 	function scroll(){
 		if(getCheck()){
-			$.post("ajaxData", { 'page':j }, function(data, status){
+			$.get("api", { 'page':j }, function(data, status){
 				if (data.status == 'failed') {
 					ajax_data = '';
 					if (j > 5) {
@@ -187,16 +187,6 @@ function getStyle(box,top,left,index){
 	    	<div class="title"><a href="#">往下有福利图,老司机懂</a></div>
             <div class="pic"><img src="images/{{ rand(1, 10) }}.jpg"></div>
     	</div>
-    </div>
-	<div class="box">
-	<div class="info">
-    	<div class="title"><a class="notice" href="http://willzhangweilin.com/contact">号外！投稿领红包啦</a></div>
-        <div class="pic">
-        	<p>
-        		号外！号外！号外！(*^_^*) 如果你有好玩有趣的段子，独乐乐， 不如众乐乐， 分享，让快乐传递，让大家一起来<span class="">嘻嘻哈哈</span>。<a class="notice" href="http://willzhangweilin.com/contact">欢迎来稿</a>，趣闻段子一经采用, 每周按段子热度排名，前十的优秀趣闻段子将有机会领取微信红包哦。
-        	</p>
-        </div>
-	</div>
     </div>
     @foreach ($articles as $k => $article)
     <div class="box">
