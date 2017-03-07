@@ -79,7 +79,6 @@ class CurlJoke extends Command
 
     private function curlApi()
     {
-        $result = $this->curlPost(1);
         for ($i = 1; $i <= 5; ++$i) {
             try {
                 $curl_result = $this->curlPost($i);
