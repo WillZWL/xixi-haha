@@ -12,7 +12,7 @@ class Article extends Model
 
     protected $dates = ['deleted_at'];
 
-    protected $fillable = ['title', 'body','click', 'original', 'created_at'];
+    protected $fillable = ['title', 'body', 'click', 'original', 'created_at'];
 
     public static function getIndexData()
     {
@@ -21,9 +21,10 @@ class Article extends Model
             $articles = [];
             foreach ($list as $value) {
                 $row['title'] = $value->title;
-                $row['body'] = str_replace("</p><p>", '', $value->body);
+                $row['body'] = str_replace('</p><p>', '', $value->body);
                 $articles[] = $row;
             }
+
             return $articles;
         });
     }

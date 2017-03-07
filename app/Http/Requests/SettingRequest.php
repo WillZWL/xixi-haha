@@ -22,7 +22,7 @@ class SettingRequest extends Request
     public function rules()
     {
         return [
-            //
+
         ];
     }
 }

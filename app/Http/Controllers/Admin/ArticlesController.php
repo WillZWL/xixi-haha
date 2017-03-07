@@ -10,7 +10,6 @@ class ArticlesController extends Controller
 {
     public function __construct()
     {
-
     }
 
     /**
@@ -21,6 +20,7 @@ class ArticlesController extends Controller
     public function index()
     {
         $articles = Article::latest()->paginate(15);
+
         return view('admin.articles.index', compact('articles'));
     }
 

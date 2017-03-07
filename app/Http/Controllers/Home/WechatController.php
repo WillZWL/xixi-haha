@@ -8,14 +8,14 @@ use Wechat;
 
 class WechatController extends Controller
 {
-
     public function serve()
     {
         Log::info('request arrived.');
-        Wechat::server()->setMessageHandler(function($message){
+        Wechat::server()->setMessageHandler(function ($message) {
             return $this->wechatHandler($message);
         });
         Log::info('return response.');
+
         return Wechat::server()->serve();
     }
 
@@ -29,7 +29,7 @@ class WechatController extends Controller
                 return $this->textHandler($message);
                 break;
             default:
-                return "欢迎关注 嘻嘻哈哈（http://xixi-haha.com)";
+                return '欢迎关注 嘻嘻哈哈（http://xixi-haha.com)';
                 break;
         }
     }
@@ -39,12 +39,12 @@ class WechatController extends Controller
         $user = $message->ToUserName;
         $from = $message->FromUserName;
         $msg = $message->Content;
-        $content = "Hello ".$user. ", You want to ask ". $from ."  ".$msg;
+        $content = 'Hello '.$user.', You want to ask '.$from.'  '.$msg;
+
         return $content;
     }
 
     protected function eventHandler($message)
     {
-
     }
 }
