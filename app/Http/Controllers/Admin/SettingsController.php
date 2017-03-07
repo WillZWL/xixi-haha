@@ -27,7 +27,6 @@ class SettingsController extends Controller
      */
     public function create()
     {
-        //
     }
 
     /**
@@ -54,6 +53,7 @@ class SettingsController extends Controller
     public function flush()
     {
         \Cache::flush();
+
         return redirect('admin/settings/index');
     }
 }

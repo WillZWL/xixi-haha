@@ -48,5 +48,3 @@ Route::group(['namespace' => 'Home'], function () {
  * wechat
 */
 Route::any('/wechat', 'Home\WechatController@serve');
-
-

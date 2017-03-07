@@ -5,12 +5,11 @@ namespace App\Console\Commands;
 use App\Article;
 use Config;
 use Log;
-use App\Http\Requests\ArticleRequest;
 use Illuminate\Console\Command;
 use Symfony\Component\Console\Input\InputOption;
 
-class CurlJoke extends Command {
-
+class CurlJoke extends Command
+{
     protected $name = 'joke';
 
     protected $description = 'Joke From Api && Cache Joke Data';
@@ -37,15 +36,16 @@ class CurlJoke extends Command {
         $this->cacheData();
     }
 
-    private function cacheData() {
-        for ($i=1; $i <= 100; $i++) {
-            $skip = 20*$i;
+    private function cacheData()
+    {
+        for ($i = 1; $i <= 100; ++$i) {
+            $skip = 20 * $i;
             $articles = Article::latest()->skip($skip)->take(20)->get();
             $data = array();
             $row = array();
             foreach ($articles as $k => $article) {
                 $row['title'] = $article->title;
-                $row['body'] = str_replace("</p><p>", '', $article->body);
+                $row['body'] = str_replace('</p><p>', '', $article->body);
                 $data[] = $row;
             }
             $key = 'joke'.$i;
@@ -55,13 +55,14 @@ class CurlJoke extends Command {
 
     private function flushData()
     {
-        for ($i=0; $i <= 100; $i++) {
+        for ($i = 0; $i <= 100; ++$i) {
             $key = 'joke'.$i;
             \Cache::tags('xixihaha')->forget($key);
         }
     }
 
-    private function stroeData($data) {
+    private function stroeData($data)
+    {
         foreach ($data as $row) {
             $article['title'] = $row->title;
             $article['body'] = $row->text;
@@ -79,7 +80,7 @@ class CurlJoke extends Command {
     private function curlApi()
     {
         $result = $this->curlPost(1);
-        for ($i=1; $i <= 5; $i++) {
+        for ($i = 1; $i <= 5; ++$i) {
             try {
                 $curl_result = $this->curlPost($i);
                 $this->stroeData($curl_result);
@@ -95,20 +96,20 @@ class CurlJoke extends Command {
         $api_key = Config::get('app.api_key');
         $ch = curl_init();
         $url = $api_url.$page;
-        $header = array("apikey: $api_key",);
-        curl_setopt($ch, CURLOPT_HTTPHEADER  , $header);
+        $header = array("apikey: $api_key");
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($ch , CURLOPT_URL , $url);
+        curl_setopt($ch, CURLOPT_URL, $url);
         $res = curl_exec($ch);
         $res = json_decode($res);
         if ($res->showapi_res_code == 0) {
             $list = $res->showapi_res_body->contentlist;
+
             return $list;
         }
     }
 
     public function fire()
     {
-
     }
 }

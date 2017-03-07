@@ -18,7 +18,7 @@ class Opcache extends Model
 
     public function getPageTitle()
     {
-        return 'PHP ' . phpversion() . " with OpCache {$this->_configuration['version']['version']}";
+        return 'PHP '.phpversion()." with OpCache {$this->_configuration['version']['version']}";
     }
 
     public function getStatusDataRows()
@@ -46,10 +46,10 @@ class Opcache extends Model
                         $v = number_format(
                                 $v,
                                 2
-                            ) . '%';
+                            ).'%';
                     }
                     if ($k === 'blacklist_miss_ratio') {
-                        $v = number_format($v, 2) . '%';
+                        $v = number_format($v, 2).'%';
                     }
                     if ($k === 'start_time' || $k === 'last_restart_time') {
                         $v = ($v ? date(DATE_RFC822, $v) : 'never');
@@ -107,8 +107,10 @@ class Opcache extends Model
 
         $basename = '';
         while (true) {
-            if (count($this->_d3Scripts) !=1) break;
-            $basename .= DIRECTORY_SEPARATOR . key($this->_d3Scripts);
+            if (count($this->_d3Scripts) != 1) {
+                break;
+            }
+            $basename .= DIRECTORY_SEPARATOR.key($this->_d3Scripts);
             $this->_d3Scripts = reset($this->_d3Scripts);
         }
 
@@ -121,7 +123,7 @@ class Opcache extends Model
             $file_plural = $count > 1 ? 's' : null;
             $m = 0;
             foreach ($files as $file => $data) {
-                $m += $data["memory_consumption"];
+                $m += $data['memory_consumption'];
             }
             $m = $this->_size_for_humans($m);
 
@@ -133,8 +135,8 @@ class Opcache extends Model
 
             foreach ($files as $file => $data) {
                 $rows[] = "<tr id=\"row-{$id}\">";
-                $rows[] = "<td>" . $this->_format_value($data["hits"]) . "</td>";
-                $rows[] = "<td>" . $this->_size_for_humans($data["memory_consumption"]) . "</td>";
+                $rows[] = '<td>'.$this->_format_value($data['hits']).'</td>';
+                $rows[] = '<td>'.$this->_size_for_humans($data['memory_consumption']).'</td>';
                 $rows[] = $count > 1 ? "<td>{$file}</td>" : "<td>{$dir}/{$file}</td>";
                 $rows[] = '</tr>';
             }
@@ -147,7 +149,7 @@ class Opcache extends Model
 
     public function getScriptStatusCount()
     {
-        return count($this->_status["scripts"]);
+        return count($this->_status['scripts']);
     }
 
     public function getGraphDataSetJson()
@@ -162,7 +164,7 @@ class Opcache extends Model
         $dataset['keys'] = array(
             $this->_status['opcache_statistics']['num_cached_keys'],
             $this->_status['opcache_statistics']['max_cached_keys'] - $this->_status['opcache_statistics']['num_cached_keys'],
-            0
+            0,
         );
 
         $dataset['hits'] = array(
@@ -232,7 +234,7 @@ class Opcache extends Model
             return $value;
         }
 
-        $array = array('name' => $name,'children' => array());
+        $array = array('name' => $name, 'children' => array());
 
         foreach ($value as $k => $v) {
             $array['children'][] = $this->_processPartition($v, $k);
@@ -266,18 +268,19 @@ class Opcache extends Model
     // Borrowed from Laravel
     private function _arrayPset(&$array, $key, $value)
     {
-        if (is_null($key)) return $array = $value;
+        if (is_null($key)) {
+            return $array = $value;
+        }
         $keys = explode(DIRECTORY_SEPARATOR, ltrim($key, DIRECTORY_SEPARATOR));
         while (count($keys) > 1) {
             $key = array_shift($keys);
-            if ( ! isset($array[$key]) || ! is_array($array[$key])) {
+            if (!isset($array[$key]) || !is_array($array[$key])) {
                 $array[$key] = array();
             }
-            $array =& $array[$key];
+            $array = &$array[$key];
         }
         $array[array_shift($keys)] = $value;
+
         return $array;
     }
-
 }
-

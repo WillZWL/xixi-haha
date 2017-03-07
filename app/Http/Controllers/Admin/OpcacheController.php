@@ -14,8 +14,7 @@ class OpcacheController extends Controller
      */
     public function index()
     {
-        //
-        define('THOUSAND_SEPARATOR',true);
+        define('THOUSAND_SEPARATOR', true);
 
         $dataModel = new Opcache();
 

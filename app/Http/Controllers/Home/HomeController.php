@@ -26,6 +26,7 @@ class HomeController extends Controller
     public function index()
     {
         $articles = Article::getIndexData();
+
         return view('home.index', compact('articles'));
     }
 
@@ -44,6 +45,7 @@ class HomeController extends Controller
         } else {
             $data['status'] = 'failed';
         }
+
         return response()->json($data);
     }
 }

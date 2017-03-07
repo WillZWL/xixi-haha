@@ -20,11 +20,9 @@ class ViewComposerServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
     }
 
     private function composeSidebar()
     {
-
     }
 }
